@@ -1,2 +1,2 @@
 SELECT * FROM Subject WHERE (SELECT AVG(mark) FROM Mark WHERE Mark.subject_id = Subject.id) > (SELECT AVG(mark) FROM Mark);
-SELECT * FROM Student WHERE (SELECT amount FROM Payment WHERE Payment.student_id = Student.id) < (SELECT AVG(amount) FROM Payment);
+SELECT s.* FROM Student s JOIN Payment p ON s.id = p.student_id WHERE p.amount < (SELECT AVG(amount) FROM Payment);
