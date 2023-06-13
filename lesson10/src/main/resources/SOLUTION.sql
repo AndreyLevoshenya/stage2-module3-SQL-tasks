@@ -1,2 +1,2 @@
 SELECT * FROM Subject WHERE (SELECT AVG(mark) FROM Mark WHERE Mark.subject_id = Subject.id) > (SELECT AVG(mark) FROM Mark);
-SELECT s.* FROM Student s JOIN Payment p ON s.id = p.student_id WHERE p.amount > (SELECT AVG(amount) FROM Payment);
+SELECT s.id, s.name FROM student AS s JOIN payment AS p ON s.id = p.student_id GROUP BY (s.id) HAVING avg(p.amount)  < (SELECT avg(amount) FROM payment);
